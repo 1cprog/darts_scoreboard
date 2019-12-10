@@ -66,3 +66,32 @@
     color: #fff;
   }
 }
+
+.container_input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(135, 135, 135, 0.62);
+  z-index: 10;
+  .players_input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    left: calc(50vw - 200px);
+    top: calc(50vh - 200px);
+    background-color: #fff;
+    border-radius: 10px;
+    #player1,
+    #player2 {
+      flex-basis: auto;
+      height: 60px;
+      background-color: #fff;
+      border: 1px solid #aaa;
+    }
+  }
+}

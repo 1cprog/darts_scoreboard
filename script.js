@@ -32,3 +32,13 @@ const calcTrhow = (event) => {
 
 const okButton = document.querySelector('button');
 okButton.addEventListener('click', calcTrhow);
+
+// initialize players
+const initPlayers = () => {
+    const playersInput = document.querySelector('.container_input');
+    playersInput.style.display = 'block';
+};
+
+window.onload = () => {
+    initPlayers();
+};
