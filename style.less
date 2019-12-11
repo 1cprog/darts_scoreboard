@@ -2,7 +2,6 @@
   font-family: 'Ubuntu', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #333;
 }
 
 #score_table {
@@ -86,12 +85,17 @@
     top: calc(50vh - 200px);
     background-color: #fff;
     border-radius: 10px;
+    label {
+      display: flex;
+      justify-content: center;
+    }
     #player1,
     #player2 {
-      flex-basis: auto;
-      height: 60px;
+      height: 40px;
+      width: 85%;
       background-color: #fff;
-      border: 1px solid #aaa;
+      border: 1px solid #cecece;
+      border-radius: 5px;
     }
   }
 }
