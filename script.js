@@ -1,4 +1,8 @@
 // Main elements
+const gameSetting = {
+
+};
+
 const scoresPlayer1 = document.querySelector(`.player1.scores_left`);
 const dartsThrown = document.querySelector('.player1.darts_thrown');
 const legsWin = document.querySelector('.player1.win_legs');
@@ -30,6 +34,10 @@ const calcTrhow = (event) => {
     document.querySelector('input').value = '';
 };
 
+const newGame = () => {
+
+};
+
 const okButton = document.querySelector('button');
 okButton.addEventListener('click', calcTrhow);
 
@@ -37,6 +45,9 @@ okButton.addEventListener('click', calcTrhow);
 const initPlayers = () => {
     const playersInput = document.querySelector('.container_input');
     playersInput.style.display = 'block';
+    const button = document.querySelector('input.btn');
+    button.addEventListener('click', newGame);
+    button.addEventListener('keyup', newGame);
 };
 
 window.onload = () => {
