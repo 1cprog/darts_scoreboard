@@ -1,9 +1,14 @@
+:root {
+  --topcolor: #fed22f;
+  --black: #020100;
+}
+
 * {
   font-family: 'Ubuntu', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #020100;
+  color: var(--black);
 }
 
 #score_table {
@@ -14,18 +19,20 @@
 .wrapper {
   display: grid;
   grid-template-columns: 12fr repeat(2, 1fr) 2fr;
+  grid-template-rows: repeat(3, 30px);
   width: 400px;
   .header {
     padding: 5px;
-    background: #FED22F;
+    background: var(--topcolor);
   }
   .players,
-  .player1 {
-    padding: 5px;
+  .player1,
+  .player2 {
+    padding: 0 5px;
     background: #fdfffc;
   }
   .player.helper {
-    border-right: 4px solid #020100;
+    border-right: 4px solid var(--black);
     ul {
       width: 150px;
       list-style-type: none;
@@ -41,15 +48,15 @@
   }
   .player_name {
     font-weight: bold;
-    span {
-      font-size: 0.7em;
-      font-weight: normal;
-    }
+    text-transform: uppercase;
+    line-height: 30px;
   }
   .win_legs,
-  .scores_left,
   .darts_thrown {
     align-self: center;
+  }
+  .scores_left {
+    line-height: 30px;
   }
   .win_legs,
   .scores_left {
