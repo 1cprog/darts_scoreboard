@@ -1,6 +1,7 @@
 :root {
   --topcolor: #fed22f;
   --black: #020100;
+  --table-height: 30px;
 }
 
 * {
@@ -13,29 +14,40 @@
 
 #score_table {
   position: absolute;
-  left: 50%;
+  right: 0;
+  bottom: 0;
 }
 
 .wrapper {
   display: grid;
   grid-template-columns: 12fr repeat(2, 1fr) 2fr;
-  grid-template-rows: repeat(3, 30px);
+  grid-template-rows: repeat(3, var(--table-height));
   width: 400px;
   .header {
     padding: 5px;
     background: var(--topcolor);
   }
   .players,
-  .player1,
-  .player2 {
+  .darts_thrown,
+  .win_legs,
+  .scores_left {
     padding: 0 5px;
+  }
+  .player1 {
     background: #fdfffc;
   }
+  .player2 {
+    background-color: #cacaca;
+  }
   .player.helper {
-    border-right: 4px solid var(--black);
+    box-shadow: 13px 0 16px -5px #a7a7a7;
+    z-index: 2;
     ul {
       width: 150px;
+      height: var(--table-height);
+      line-height: var(--table-height);
       list-style-type: none;
+      background-image: linear-gradient(90deg, #fff 95%, darken(#fff, 10%) 100%);
     }
     li {
       padding: 5px;
@@ -46,17 +58,18 @@
       right: 100%
     }
   }
+  .active_player {
+    border-right: 4px solid var(--black);
+  }
   .player_name {
     font-weight: bold;
     text-transform: uppercase;
-    line-height: 30px;
+    line-height: var(--table-height);
   }
+  .darts_thrown,
   .win_legs,
-  .darts_thrown {
-    align-self: center;
-  }
   .scores_left {
-    line-height: 30px;
+    line-height: var(--table-height);
   }
   .win_legs,
   .scores_left {
@@ -66,7 +79,7 @@
     font-size: .7em;
   }
   .win_legs {
-    box-shadow: 5px 0 6px -4px #a7a7a7;
+    box-shadow: 13px 0 16px -5px #a7a7a7;
     z-index: 1;
   }
   .scores_left {
