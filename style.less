@@ -43,19 +43,23 @@
     box-shadow: 13px 0 16px -5px #a7a7a7;
     z-index: 2;
     ul {
-      width: 150px;
+      position: absolute;
+      visibility: hidden;
+      right: 100%;
+      width: 0;
       height: var(--table-height);
       line-height: var(--table-height);
       list-style-type: none;
       background-image: linear-gradient(90deg, #fff 95%, darken(#fff, 10%) 100%);
+      &.checkout_slider {
+        visibility: visible;
+        width: 150px;
+        transition: all 100ms cubic-bezier(.08,.28,.14,.38);
+      }
     }
     li {
       padding: 5px;
       display: inline;
-    }
-    .suggestion_list {
-      position: absolute;
-      right: 100%
     }
   }
   .active_player {
