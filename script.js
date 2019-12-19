@@ -18,7 +18,8 @@ class Player {
 
 const gameSettings = {
     gameScore: 501,
-    players: []
+    players: [],
+    backgroundSelectors: ['playerName', 'dartsThrown', 'legsWin']
 };
 
 // checkout tables with different checkout
@@ -204,7 +205,38 @@ const showCheckoutTable = (player) => {
     }
 };
 
-// calculate throw result and write into players details
+// Change active player
+const changeActivePlayer = () => {
+    const togglePlayerBackground = (player, bgClass) => {
+        gameSettings.backgroundSelectors.forEach(selector => {
+            if (bgClass) {
+                player[selector].classList.add('light');
+                player[selector].classList.remove('dark');
+            } else {
+                player[selector].classList.remove('light');
+                player[selector].classList.add('dark');
+            }
+        })
+    };
+    gameSettings.players.forEach(player => {
+        player.active = !player.active;
+        if (player.active) {
+            // Show checkout table (if possible)
+            showCheckoutTable(player);
+            togglePlayerBackground(player, true);
+            player.activePlayer.classList.add('active_player');
+        } else {
+            if ([...player.helper.classList].find(nodeElement => nodeElement === 'checkout_slider')) {
+                player.helper.classList.remove('checkout_slider');
+            }
+            player.helper.innerHTML = '';
+            togglePlayerBackground(player, false);
+            player.activePlayer.classList.remove('active_player');
+        }
+    });
+};
+
+// Calculate throw result and write into players details
 const calcTrhow = (event) => {
     event.preventDefault();
     const sum = parseInt(document.querySelector('input').value);
@@ -229,19 +261,7 @@ const calcTrhow = (event) => {
     currentPlayer.dartsThrown.innerText = currentPlayer.darts;
     currentPlayer.legsWin.innerText = currentPlayer.wins;
 
-    gameSettings.players.forEach(player => {
-        player.active = !player.active;
-        player.activePlayer.classList.toggle('active_player');
-        if (player.active) {
-            // Show checkout table (if possible)
-            showCheckoutTable(player);
-        } else {
-            if ([...player.helper.classList].find(nodeElement => nodeElement === 'checkout_slider')) {
-                player.helper.classList.remove('checkout_slider');
-            }
-            player.helper.innerHTML = '';
-        }
-    });
+    changeActivePlayer();
     document.querySelector('input').value = '';
 };
 
@@ -258,10 +278,8 @@ const newGame = (event) => {
         newPlayer.dartsThrown.innerText = newPlayer.darts;
         newPlayer.legsWin.innerText = newPlayer.wins;
     }
-    gameSettings.players[0].active = !gameSettings.players[0].active;
-    gameSettings.players[0].active ?
-        gameSettings.players[0].activePlayer.classList.add('active_player') :
-        gameSettings.players[0].activePlayer.classList.remove('active_player');
+    gameSettings.players[1].active = true;
+    changeActivePlayer();
 
     const playersInput = document.querySelector('.container_input');
     playersInput.style.display = 'none';
