@@ -16,6 +16,12 @@ class Player {
     }
 }
 
+const gameSettings = {
+    gameScore: 501,
+    players: []
+};
+
+// checkout tables with different checkout
 const checkoutTables = {
     'Unicorn': {
         170: [['T20', 'T20', 'Bull'], []],
@@ -186,12 +192,7 @@ const checkoutTables = {
     }
 };
 
-const players = [];
-
-const refreshVisualisation = () => {
-
-};
-
+// showing checkout help when scores lower than possible for close
 const showCheckoutTable = (player) => {
     if (player.score in checkoutTables.Unicorn) {
         checkoutTables.Unicorn[player.score][0].forEach(listItem => {
@@ -203,6 +204,7 @@ const showCheckoutTable = (player) => {
     }
 };
 
+// calculate throw result and write into players details
 const calcTrhow = (event) => {
     event.preventDefault();
     const sum = parseInt(document.querySelector('input').value);
@@ -211,15 +213,15 @@ const calcTrhow = (event) => {
         alert('Double check your input');
         return;
     }
-    const currentPlayer = players[0].active ? players[0] : players[1];
+    const currentPlayer = gameSettings.players[0].active ? gameSettings.players[0] : gameSettings.players[1];
     if (sum <= currentPlayer.score) {
         currentPlayer.score -= sum;
     }
     currentPlayer.darts += 3;
     if (currentPlayer.score === 0) {
         currentPlayer.wins += 1;
-        players.forEach(player => {
-            player.score = 501;
+        gameSettings.players.forEach(player => {
+            player.score = gameSettings.gameScore;
             player.darts = 0;
         })
     }
@@ -227,7 +229,7 @@ const calcTrhow = (event) => {
     currentPlayer.dartsThrown.innerText = currentPlayer.darts;
     currentPlayer.legsWin.innerText = currentPlayer.wins;
 
-    players.forEach(player => {
+    gameSettings.players.forEach(player => {
         player.active = !player.active;
         player.activePlayer.classList.toggle('active_player');
         if (player.active) {
@@ -246,16 +248,21 @@ const calcTrhow = (event) => {
 // Init
 const newGame = (event) => {
     const inputs = [...document.querySelectorAll('input[id^="player"]')];
+    gameSettings.gameScore = parseInt(document.querySelector('select').value) || gameSettings.gameScore;
     for (let i = 0; i < inputs.length; i++) {
         let newPlayer = new Player(i, inputs[i].value);
-        players.push(newPlayer);
+        gameSettings.players.push(newPlayer);
+        newPlayer.score = gameSettings.gameScore;
         newPlayer.playerName.innerText = newPlayer.name;
         newPlayer.scoresPlayer.innerText = newPlayer.score;
         newPlayer.dartsThrown.innerText = newPlayer.darts;
         newPlayer.legsWin.innerText = newPlayer.wins;
     }
-    players[0].active = !players[0].active;
-    players[0].active ? players[0].activePlayer.classList.add('active_player') : players[0].activePlayer.classList.remove('active_player');
+    gameSettings.players[0].active = !gameSettings.players[0].active;
+    gameSettings.players[0].active ?
+        gameSettings.players[0].activePlayer.classList.add('active_player') :
+        gameSettings.players[0].activePlayer.classList.remove('active_player');
+
     const playersInput = document.querySelector('.container_input');
     playersInput.style.display = 'none';
 };

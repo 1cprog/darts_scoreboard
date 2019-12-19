@@ -40,8 +40,6 @@
     background-color: #cacaca;
   }
   .player.helper {
-    box-shadow: 13px 0 16px -5px #a7a7a7;
-    z-index: 2;
     ul {
       position: absolute;
       visibility: hidden;
@@ -50,7 +48,8 @@
       height: var(--table-height);
       line-height: var(--table-height);
       list-style-type: none;
-      background-image: linear-gradient(90deg, #fff 95%, darken(#fff, 10%) 100%);
+      background-image: linear-gradient(90deg, transparent 95%, darken(#fff, 10%) 100%);
+      z-index: -2;
       &.checkout_slider {
         visibility: visible;
         width: 150px;
@@ -69,6 +68,8 @@
     font-weight: bold;
     text-transform: uppercase;
     line-height: var(--table-height);
+    box-shadow: 13px 0 16px -5px #a7a7a7;
+    z-index: 2;
   }
   .darts_thrown,
   .win_legs,
@@ -114,7 +115,7 @@
     box-shadow: 0 0 20px #888;
     label {
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
     }
     #player1,
     #player2 {
