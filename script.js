@@ -291,7 +291,7 @@ okButton.addEventListener('click', calcTrhow);
 // initialize players
 const initPlayers = () => {
     const playersInput = document.querySelector('.container_input');
-    playersInput.style.display = 'block';
+    // playersInput.style.display = 'block';
     const button = document.querySelector('input.btn');
     button.addEventListener('click', newGame);
 };

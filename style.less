@@ -138,6 +138,28 @@
   }
 }
 
+.calculator {
+  display: grid;
+  width: 500px;
+  grid-template-columns: repeat(6, 2fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-gap: 8px;
+  background-color: burlywood;
+  .calc_item {
+    background-color: chartreuse;
+  }
+  .double,
+  .undo,
+  .triple {
+    grid-column: span 3;
+  }
+  .triple_nineteen,
+  .triple_twenty,
+  .bull {
+    grid-column: span 2;
+  }
+}
+
 .btn {
   border: 1px solid #cecece;
   border-radius: 5px;
