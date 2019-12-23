@@ -19,7 +19,10 @@ class Player {
 const gameSettings = {
     gameScore: 501,
     players: [],
-    backgroundSelectors: ['playerName', 'dartsThrown', 'legsWin']
+    calculator: 'simple',
+    backgroundSelectors: ['playerName', 'dartsThrown', 'legsWin'],
+    doubleTrigger: false,
+    tripleTrigger: false
 };
 
 // checkout tables with different checkout
@@ -195,6 +198,7 @@ const checkoutTables = {
 
 // showing checkout help when scores lower than possible for close
 const showCheckoutTable = (player) => {
+    player.helper.innerHTML = '';
     if (player.score in checkoutTables.Unicorn) {
         checkoutTables.Unicorn[player.score][0].forEach(listItem => {
             const liItem = document.createElement('li');
@@ -237,19 +241,18 @@ const changeActivePlayer = () => {
 };
 
 // Calculate throw result and write into players details
-const calcTrhow = (event) => {
-    event.preventDefault();
-    const sum = parseInt(document.querySelector('input').value);
-
-    if (sum > 180) {
+const calcTrhow = (number) => {
+    if (number > 180) {
         alert('Double check your input');
         return;
     }
     const currentPlayer = gameSettings.players[0].active ? gameSettings.players[0] : gameSettings.players[1];
-    if (sum <= currentPlayer.score) {
-        currentPlayer.score -= sum;
+    if (number <= currentPlayer.score) {
+        currentPlayer.score -= number;
+    } else if (number > currentPlayer.score) {
+        currentPlayer.darts += 1;
+        changeActivePlayer();
     }
-    currentPlayer.darts += 3;
     if (currentPlayer.score === 0) {
         currentPlayer.wins += 1;
         gameSettings.players.forEach(player => {
@@ -257,12 +260,20 @@ const calcTrhow = (event) => {
             player.darts = 0;
         })
     }
+    if (gameSettings.calculator === 'simple') {
+        currentPlayer.darts += 1;
+        showCheckoutTable(currentPlayer);
+        if (currentPlayer.darts % 3 === 0) {
+            changeActivePlayer();
+        }
+    } else {
+        currentPlayer.darts += 3;
+
+        changeActivePlayer();
+    }
     currentPlayer.scoresPlayer.innerText = currentPlayer.score;
     currentPlayer.dartsThrown.innerText = currentPlayer.darts;
     currentPlayer.legsWin.innerText = currentPlayer.wins;
-
-    changeActivePlayer();
-    document.querySelector('input').value = '';
 };
 
 // Init
@@ -285,17 +296,66 @@ const newGame = (event) => {
     playersInput.style.display = 'none';
 };
 
-const okButton = document.querySelector('button');
-okButton.addEventListener('click', calcTrhow);
+// Calculator press handle
+const handleCalculatorPress = (event) => {
+    const key = event.target;
+    const data = key.dataset;
+    // If we have number key press
+    if (!Object.keys(data).length) {
+        let throwResult = parseInt(key.innerText);
+        // if double trigger is active need to doubled score
+        if (gameSettings.doubleTrigger) {
+            throwResult *= 2;
+            gameSettings.doubleTrigger = false;
+            // the same action on tripled
+        } else if (gameSettings.tripleTrigger) {
+            throwResult *=3;
+            gameSettings.tripleTrigger = false;
+        }
+        calcTrhow(throwResult);
+    } else {
+        switch (data['action']) {
+            case 'double':
+                gameSettings.doubleTrigger = true;
+                gameSettings.tripleTrigger = false;
+                break;
+            case 'triple':
+                gameSettings.tripleTrigger = true;
+                gameSettings.doubleTrigger = false;
+                break;
+            case '50':
+                calcTrhow(parseInt(data['action']));
+                break;
+            case '60':
+                calcTrhow(parseInt(data['action']));
+                break;
+            case '57':
+                calcTrhow(parseInt(data['action']));
+                break;
+            case '54':
+                calcTrhow(parseInt(data['action']));
+                break;
+            case '51':
+                calcTrhow(parseInt(data['action']));
+                break;
+        }
+    }
+};
 
 // initialize players
 const initPlayers = () => {
     const playersInput = document.querySelector('.container_input');
-    // playersInput.style.display = 'block';
+    playersInput.style.display = 'block';
     const button = document.querySelector('input.btn');
     button.addEventListener('click', newGame);
 };
 
 window.onload = () => {
     initPlayers();
+
+    // add event listeners on calculator
+    const calculatorButtons = document.querySelectorAll('.calculator .accent_button, .calculator .calc_item, .undo');
+    for (let button of calculatorButtons) {
+        button.addEventListener('click', handleCalculatorPress);
+    }
 };

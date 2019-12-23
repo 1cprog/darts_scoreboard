@@ -2,6 +2,13 @@
   --topcolor: #fed22f;
   --black: #020100;
   --table-height: 30px;
+  --calc-main-dark: #1976D2;
+  --calc-main-primary: #2196F3;
+  --calc-main-light: #BBDEFB;
+  --calc-border: #BDBDBD;
+  --calc-accent: #FF5252;
+  --calc-accent-dark: #D32F2F;
+  --calc-text-black: #212121;
 }
 
 * {
@@ -108,8 +115,9 @@
     position: absolute;
     width: 400px;
     height: 200px;
-    left: calc(50vw - 200px);
-    top: calc(50vh - 100px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 20px #888;
@@ -139,24 +147,62 @@
 }
 
 .calculator {
+  * {
+    border: 1px solid var(--calc-border);
+    border-radius: 2px;
+  }
+  div {
+    display: flex;
+    justify-content: center;
+    cursor: context-menu;
+  }
   display: grid;
-  width: 500px;
+  width: 250px;
   grid-template-columns: repeat(6, 2fr);
   grid-template-rows: repeat(6, 1fr);
-  grid-gap: 8px;
-  background-color: burlywood;
+  grid-gap: 2px;
   .calc_item {
-    background-color: chartreuse;
+    background-color: var(--calc-main-primary);
+    cursor: context-menu;
+    &:hover {
+      background-color: var(--calc-main-dark);
+    }
   }
   .double,
   .undo,
   .triple {
     grid-column: span 3;
   }
-  .triple_nineteen,
-  .triple_twenty,
-  .bull {
-    grid-column: span 2;
+  .display {
+    grid-column: span 6;
+  }
+  .shortcuts {
+    display: grid;
+    grid-column: span 6;
+    grid-template-columns: repeat(11, 1fr);
+    width: 100%;
+    grid-column-gap: 2px;
+    border: none;
+
+    .calculator_shortcut {
+      background-color: var(--calc-main-light);
+
+      &:hover {
+        background-color: var(--calc-main-primary);
+      }
+    }
+  }
+  .accent_button {
+    background-color: var(--calc-accent);
+    &:hover {
+      background-color: var(--calc-accent-dark);
+    }
+  }
+  .undo {
+    background-color: #fff;
+    &:hover {
+      background-color: #d0d0d0;
+    }
   }
 }
 

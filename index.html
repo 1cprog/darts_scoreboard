@@ -16,19 +16,22 @@
 <!-- Calculator -->
 
 <div class="calculator">
-    <div class="twenty_six">26</div>
-    <div class="forty_one">41</div>
-    <div class="forty_five">45</div>
-    <div class="fifty_five">55</div>
-    <div class="sixty">60</div>
-    <div class="eighty_one">81</div>
-    <div class="eighty_five">85</div>
-    <div class="ninety_five">95</div>
-    <div class="one_hundred">100</div>
-    <div class="one_hundred_thirty_three">133</div>
-    <div class="one_hundred_forty">140</div>
-    <div class="calc_item double">Double</div>
-    <div class="calc_item triple">Triple</div>
+<!--    <div class="shortcuts">-->
+<!--        <div class="calculator_shortcut twenty_six">26</div>-->
+<!--        <div class="calculator_shortcut forty_one">41</div>-->
+<!--        <div class="calculator_shortcut forty_five">45</div>-->
+<!--        <div class="calculator_shortcut fifty_five">55</div>-->
+<!--        <div class="calculator_shortcut sixty">60</div>-->
+<!--        <div class="calculator_shortcut eighty_one">81</div>-->
+<!--        <div class="calculator_shortcut eighty_five">85</div>-->
+<!--        <div class="calculator_shortcut ninety_five">95</div>-->
+<!--        <div class="calculator_shortcut one_hundred">100</div>-->
+<!--        <div class="calculator_shortcut one_hundred_thirty_three">133</div>-->
+<!--        <div class="calculator_shortcut one_hundred_forty">140</div>-->
+<!--    </div>-->
+    <div class="display"></div>
+    <div class="accent_button double" data-action="double">Double</div>
+    <div class="accent_button triple" data-action="triple">Triple</div>
     <div class="calc_item one">1</div>
     <div class="calc_item two">2</div>
     <div class="calc_item three">3</div>
@@ -50,10 +53,12 @@
     <div class="calc_item nineteen">19</div>
     <div class="calc_item twenty">20</div>
     <div class="calc_item zero">0</div>
-    <div class="calc_item undo">Undo</div>
-    <div class="calc_item triple_nineteen">T19</div>
-    <div class="calc_item triple_twenty">T20</div>
-    <div class="calc_item bull">Bull</div>
+    <div class="accent_button bull" data-action="50">Bull</div>
+    <div class="accent_button triple_twenty" data-action="60">T20</div>
+    <div class="accent_button triple_nineteen" data-action="57">T19</div>
+    <div class="accent_button triple_eighteen" data-action="54">T18</div>
+    <div class="accent_button triple_seventeen" data-action="51">T17</div>
+    <div class="undo">Undo</div>
 </div>
 <!-- Score table -->
 <div id="score_table">
