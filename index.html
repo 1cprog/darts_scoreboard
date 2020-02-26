@@ -12,6 +12,56 @@
     <input type="text" placeholder="Scores">
     <button>Ok</button>
 </form>
+
+<!-- Calculator -->
+
+<div class="calculator">
+<!--    <div class="shortcuts">-->
+<!--        <div class="calculator_shortcut twenty_six">26</div>-->
+<!--        <div class="calculator_shortcut forty_one">41</div>-->
+<!--        <div class="calculator_shortcut forty_five">45</div>-->
+<!--        <div class="calculator_shortcut fifty_five">55</div>-->
+<!--        <div class="calculator_shortcut sixty">60</div>-->
+<!--        <div class="calculator_shortcut eighty_one">81</div>-->
+<!--        <div class="calculator_shortcut eighty_five">85</div>-->
+<!--        <div class="calculator_shortcut ninety_five">95</div>-->
+<!--        <div class="calculator_shortcut one_hundred">100</div>-->
+<!--        <div class="calculator_shortcut one_hundred_thirty_three">133</div>-->
+<!--        <div class="calculator_shortcut one_hundred_forty">140</div>-->
+<!--    </div>-->
+    <div class="display"></div>
+    <div class="accent_button double" data-action="double">Double</div>
+    <div class="accent_button triple" data-action="triple">Triple</div>
+    <div class="calc_item one">1</div>
+    <div class="calc_item two">2</div>
+    <div class="calc_item three">3</div>
+    <div class="calc_item four">4</div>
+    <div class="calc_item five">5</div>
+    <div class="calc_item six">6</div>
+    <div class="calc_item seven">7</div>
+    <div class="calc_item eight">8</div>
+    <div class="calc_item nine">9</div>
+    <div class="calc_item ten">10</div>
+    <div class="calc_item eleven">11</div>
+    <div class="calc_item twelve">12</div>
+    <div class="calc_item thirteen">13</div>
+    <div class="calc_item fourteen">14</div>
+    <div class="calc_item fifteen">15</div>
+    <div class="calc_item sixteen">16</div>
+    <div class="calc_item seventeen">17</div>
+    <div class="calc_item eighteen">18</div>
+    <div class="calc_item nineteen">19</div>
+    <div class="calc_item twenty">20</div>
+    <div class="calc_item twentyfive">25</div>
+    <div class="calc_item zero">0</div>
+    <div class="accent_button bull" data-action="50">Bull</div>
+    <div class="accent_button triple_twenty" data-action="60">T20</div>
+    <div class="accent_button triple_nineteen" data-action="57">T19</div>
+    <div class="accent_button triple_eighteen" data-action="54">T18</div>
+    <div class="accent_button triple_seventeen" data-action="51">T17</div>
+    <div class="undo" data-action="undo">Undo</div>
+</div>
+<!-- Score table -->
 <div id="score_table">
     <div class="wrapper">
         <div class="total_legs_title header">First to 11 legs</div>
@@ -46,6 +96,8 @@
         <div class="scores_left player2">79</div>
     </div>
 </div>
+
+<!-- Game settings -->
 <div class="container_input" style="display:none">
     <div class="players_input">
         <label for="game-type">
@@ -58,9 +110,11 @@
                 <option value="1001">1001</option>
             </select>
         </label>
+        <input type="radio" name="starter" value="first" checked>
         <label for="player1">
             <input type="text" placeholder="Player 1" id="player1">
         </label>
+        <input type="radio" name="starter" value="second">
         <label for="player2">
             <input type="text" placeholder="Player 2" id="player2">
         </label>
