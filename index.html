@@ -52,13 +52,14 @@
     <div class="calc_item eighteen">18</div>
     <div class="calc_item nineteen">19</div>
     <div class="calc_item twenty">20</div>
+    <div class="calc_item twentyfive">25</div>
     <div class="calc_item zero">0</div>
     <div class="accent_button bull" data-action="50">Bull</div>
     <div class="accent_button triple_twenty" data-action="60">T20</div>
     <div class="accent_button triple_nineteen" data-action="57">T19</div>
     <div class="accent_button triple_eighteen" data-action="54">T18</div>
     <div class="accent_button triple_seventeen" data-action="51">T17</div>
-    <div class="undo">Undo</div>
+    <div class="undo" data-action="undo">Undo</div>
 </div>
 <!-- Score table -->
 <div id="score_table">
@@ -109,9 +110,11 @@
                 <option value="1001">1001</option>
             </select>
         </label>
+        <input type="radio" name="starter" value="first" checked>
         <label for="player1">
             <input type="text" placeholder="Player 1" id="player1">
         </label>
+        <input type="radio" name="starter" value="second">
         <label for="player2">
             <input type="text" placeholder="Player 2" id="player2">
         </label>
